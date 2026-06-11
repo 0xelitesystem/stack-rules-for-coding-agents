@@ -1,0 +1,57 @@
+# Claude Code (general)
+
+Stack-agnostic guidance for Claude Code. Drop this in any project root as `CLAUDE.md`.
+
+## Read context before changing code
+
+- When asked to fix or modify a file, read the file first. Don't assume from the task description.
+- When the task spans multiple files, read all of them before editing the first. Cross-file dependencies break otherwise.
+- For configuration files (package.json, pyproject.toml, etc.), check what's actually installed before suggesting code that uses a library.
+
+## Match the codebase style
+
+- Use the project's existing patterns. If the project uses arrow functions, use arrow functions. If it uses async/await, don't introduce promise chains.
+- If the project has a linter or formatter (eslint, prettier, ruff, gofmt, rustfmt), match its rules without being told.
+- Variable naming: match the surrounding code's casing convention exactly.
+- Quote style: match the surrounding code (single vs double).
+
+## Tests
+
+- When adding a function, add a test. Don't ask permission first.
+- When fixing a bug, add a test that fails before the fix and passes after.
+- Place new tests next to existing tests of the same kind. Don't invent a new directory.
+- Don't disable, skip, or delete failing tests to make CI green.
+
+## Files
+
+- Don't create new files unless the change requires it. Edit existing files when possible.
+- New files should follow the project's existing module/package boundaries.
+- README.md, CHANGELOG.md, LICENSE: don't create or modify these unless asked.
+
+## Dependencies
+
+- Don't add new dependencies for trivial functionality (e.g. don't add `lodash` for `Array.from`).
+- If a dependency is needed, install it via the project's package manager (npm, yarn, pnpm, pip, uv, cargo, go) — don't manually edit lockfiles.
+- Pin to a current stable version, not the latest unstable.
+
+## Commit messages
+
+- Use the project's existing commit style. If unclear, default to: short imperative subject (`Fix race condition in queue worker`), optional body explaining why.
+- One commit per logical change. Don't bundle unrelated fixes.
+- No commit messages like "fix stuff" or "wip".
+
+## Communication
+
+- When unsure, ask. Don't guess and apologize later.
+- When making non-obvious choices, briefly explain why in the response.
+- When a change has risk (mutates DB, deletes files, modifies CI), describe the risk before doing it.
+- When a task is bigger than expected, propose a plan and get confirmation before starting.
+
+## Don't do this
+
+- Don't refactor unrelated code while fixing a bug
+- Don't add comments explaining what the code does (the code does that). Add comments explaining WHY.
+- Don't suppress lint warnings without understanding what they catch
+- Don't catch broad exceptions to "make errors go away"
+- Don't introduce features the user didn't ask for ("I also added X for you")
+- Don't delete user-written code while editing nearby code (preserve everything not in scope)
