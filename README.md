@@ -1,4 +1,4 @@
-# cursor-rules-collection
+# stack-rules-for-coding-agents
 
 Curated `.cursorrules` and `CLAUDE.md` files for popular stacks. Drop one into your project and your AI coding assistant stops fighting the conventions.
 
