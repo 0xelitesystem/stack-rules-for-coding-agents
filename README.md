@@ -90,6 +90,6 @@ MIT. Each rules file is independent, copy one into your project without inheriti
 
 ## Related
 
-- [claude-skills-collection](https://github.com/0xelitesystem/claude-skills-collection), task-specific skills for Claude
+- [agent-skills-working-set](https://github.com/0xelitesystem/agent-skills-working-set), task-specific skills for Claude
 - [prompt-templates](https://github.com/0xelitesystem/prompt-templates), production prompts for Claude API
-- [claude-mcp-starter](https://github.com/0xelitesystem/claude-mcp-starter), MCP server starter templates
+- [mcp-server-minimal-templates](https://github.com/0xelitesystem/mcp-server-minimal-templates), MCP server starter templates
